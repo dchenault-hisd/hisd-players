@@ -42,7 +42,7 @@
       overflow: hidden;
       color: var(--white);
       background: var(--navy);
-      min-height: 860px;
+      min-height: 780px;
     }
 
     .hero::before {
@@ -77,7 +77,7 @@
     }
 
     .brand img {
-      width: 140px;
+      width: 112px;
       height: auto;
       filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
     }
@@ -93,7 +93,7 @@
 
     .brand-title {
       margin: 2px 0 0;
-      font-size: clamp(2.4rem, 4vw, 4.4rem);
+      font-size: clamp(1.85rem, 2.8vw, 3.05rem);
       line-height: .92;
       font-weight: 900;
       text-transform: uppercase;
@@ -145,7 +145,7 @@
 
     .headline {
       margin: 18px 0 0;
-      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-size: clamp(3rem, 6.4vw, 5.85rem);
       line-height: .9;
       letter-spacing: -0.06em;
       font-weight: 950;
@@ -166,7 +166,7 @@
     .lead {
       margin: 0;
       max-width: 720px;
-      font-size: 1.22rem;
+      font-size: 1.16rem;
       line-height: 1.75;
       color: #e7edf7;
     }
@@ -391,6 +391,98 @@
       font-size: .92rem;
     }
 
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+    .profile-card {
+      background: #09162b;
+      color: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(8,17,31,0.18);
+    }
+    .profile-photo {
+      height: 245px;
+      background:
+        linear-gradient(180deg, rgba(8,17,31,0.1), rgba(8,17,31,0.95)),
+        radial-gradient(circle at top right, rgba(200,30,42,0.24), transparent 38%),
+        linear-gradient(135deg, #123b7a, #07162d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.8);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .profile-body { padding: 22px; }
+    .profile-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+    }
+    .profile-body h3 {
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+    }
+    .badge {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--red);
+      color: white;
+      font-weight: 800;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .meta {
+      margin: 10px 0 0;
+      color: #cbd5e1;
+      font-size: .96rem;
+    }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .stat {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .stat span {
+      display: block;
+      color: #94a3b8;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 800;
+    }
+    .stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 1.05rem;
+    }
+    .profile-note {
+      color: #e2e8f0;
+      line-height: 1.55;
+      margin: 16px 0 0;
+      font-size: .95rem;
+    }
+
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
@@ -428,10 +520,102 @@
 
     @media (max-width: 1100px) {
       .hero-grid,
-      .info-grid {
+  
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 18px;
+    }
+    .profile-card {
+      background: #09162b;
+      color: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(8,17,31,0.18);
+    }
+    .profile-photo {
+      height: 245px;
+      background:
+        linear-gradient(180deg, rgba(8,17,31,0.1), rgba(8,17,31,0.95)),
+        radial-gradient(circle at top right, rgba(200,30,42,0.24), transparent 38%),
+        linear-gradient(135deg, #123b7a, #07162d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.8);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .profile-body { padding: 22px; }
+    .profile-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 12px;
+    }
+    .profile-body h3 {
+      margin: 0;
+      font-size: 1.65rem;
+      line-height: 1;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+    }
+    .badge {
+      display: inline-flex;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--red);
+      color: white;
+      font-weight: 800;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+    .meta {
+      margin: 10px 0 0;
+      color: #cbd5e1;
+      font-size: .96rem;
+    }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .stat {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .stat span {
+      display: block;
+      color: #94a3b8;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 800;
+    }
+    .stat strong {
+      display: block;
+      margin-top: 4px;
+      color: white;
+      font-size: 1.05rem;
+    }
+    .profile-note {
+      color: #e2e8f0;
+      line-height: 1.55;
+      margin: 16px 0 0;
+      font-size: .95rem;
+    }
+
+    .info-grid {
         grid-template-columns: 1fr;
       }
-      .program-grid {
+      .program-grid, .profile-grid {
         grid-template-columns: repeat(2, minmax(0,1fr));
       }
       .pill-grid {
@@ -466,6 +650,7 @@
         font-size: 1.02rem;
       }
       .program-grid,
+      .profile-grid,
       .pill-grid {
         grid-template-columns: 1fr;
       }
@@ -493,7 +678,7 @@
         <nav class="nav" aria-label="Main navigation">
           <a class="active" href="#">Home</a>
           <a href="#programs">Sports</a>
-          <a href="#directory">Athlete Directory</a>
+          <a href="athletes.html">Athlete Directory</a>
           <a href="#recruiting">Recruiting Info</a>
           <a href="#resources">Resources</a>
           <a href="#contact">Contact</a>
@@ -509,7 +694,7 @@
             Welcome to the official recruiting portal for Henderson ISD Athletics. This mockup is designed to help college coaches review current student-athlete information, explore programs and connect directly with Henderson coaches and staff.
           </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#directory">View Athlete Directory</a>
+            <a class="btn btn-primary" href="athletes.html">View Athlete Directory</a>
             <a class="btn btn-secondary" href="#recruiting">Recruiting Information</a>
           </div>
         </section>
@@ -568,7 +753,7 @@
           <h2 class="section-title">Explore Our Programs</h2>
           <p class="section-copy">This homepage section can highlight major sports first and link each program to its own recruiting page, coach information and athlete directory.</p>
         </div>
-        <a class="section-link" href="#directory">View all sports →</a>
+        <a class="section-link" href="athletes.html">View all athletes →</a>
       </div>
 
       <div class="program-grid">
@@ -610,7 +795,50 @@
       </div>
     </section>
 
+
     <section id="directory" style="margin-top:42px;">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Player Profiles</h2>
+          <p class="section-copy">A preview of how individual student-athlete cards can look. The full directory page can be generated from a Google Sheet later.</p>
+        </div>
+        <a class="section-link" href="athletes.html">Open directory →</a>
+      </div>
+
+      <div class="profile-grid">
+        <article class="profile-card">
+          <div class="profile-photo">Player Photo</div>
+          <div class="profile-body">
+            <div class="profile-topline"><div><h3>Cade Thompson</h3><p class="meta">Football • Class of 2027</p></div><span class="badge">QB</span></div>
+            <div class="profile-stats"><div class="stat"><span>Height</span><strong>6'2&quot;</strong></div><div class="stat"><span>Weight</span><strong>190</strong></div><div class="stat"><span>GPA</span><strong>3.82</strong></div><div class="stat"><span>Film</span><strong>Hudl</strong></div></div>
+            <p class="profile-note">Three-year varsity athlete with leadership, field awareness and academic consistency.</p>
+            <a class="program-link" href="athlete-cade-thompson.html">Open Profile →</a>
+          </div>
+        </article>
+
+        <article class="profile-card">
+          <div class="profile-photo">Player Photo</div>
+          <div class="profile-body">
+            <div class="profile-topline"><div><h3>Mason Reed</h3><p class="meta">Football • Class of 2026</p></div><span class="badge">WR / DB</span></div>
+            <div class="profile-stats"><div class="stat"><span>Height</span><strong>5'11&quot;</strong></div><div class="stat"><span>Weight</span><strong>175</strong></div><div class="stat"><span>GPA</span><strong>3.54</strong></div><div class="stat"><span>Film</span><strong>Hudl</strong></div></div>
+            <p class="profile-note">Versatile skill player with production on offense, defense and special teams.</p>
+            <a class="program-link" href="athlete-cade-thompson.html">Open Profile →</a>
+          </div>
+        </article>
+
+        <article class="profile-card">
+          <div class="profile-photo">Player Photo</div>
+          <div class="profile-body">
+            <div class="profile-topline"><div><h3>Luke Henderson</h3><p class="meta">Baseball • Class of 2028</p></div><span class="badge">RHP / 1B</span></div>
+            <div class="profile-stats"><div class="stat"><span>Height</span><strong>6'3&quot;</strong></div><div class="stat"><span>Weight</span><strong>205</strong></div><div class="stat"><span>GPA</span><strong>3.91</strong></div><div class="stat"><span>Film</span><strong>Video</strong></div></div>
+            <p class="profile-note">Projectable two-way player with strong work habits and classroom performance.</p>
+            <a class="program-link" href="athlete-cade-thompson.html">Open Profile →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="recruiting" style="margin-top:42px;">
       <div class="section-head">
         <div>
           <h2 class="section-title">Athlete Directory</h2>
