@@ -66,10 +66,21 @@ function showDataWarning(msg) {
 function driveDirectUrl(url) {
   if (!url) return "";
   const value = String(url).trim();
+
+  // If the sheet already has a normal web image URL, use it as-is.
+  if (!value.includes("drive.google.com")) return value;
+
+  // Standard Drive share link:
+  // https://drive.google.com/file/d/FILE_ID/view?usp=sharing
   const fileMatch = value.match(/\/file\/d\/([^/]+)/);
-  if (fileMatch) return `https://drive.google.com/uc?export=view&id=${fileMatch[1]}`;
+  if (fileMatch) return `https://drive.google.com/thumbnail?id=${fileMatch[1]}&sz=w1200`;
+
+  // Direct-style Drive URL:
+  // https://drive.google.com/open?id=FILE_ID
+  // https://drive.google.com/uc?id=FILE_ID
   const idMatch = value.match(/[?&]id=([^&]+)/);
-  if (idMatch) return `https://drive.google.com/uc?export=view&id=${idMatch[1]}`;
+  if (idMatch) return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w1200`;
+
   return value;
 }
 function athleteName(a) { return a.preferred_name || `${a.first_name || ""} ${a.last_name || ""}`.trim() || "Athlete"; }

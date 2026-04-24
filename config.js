@@ -6,8 +6,8 @@
 // 4. Change useSampleData to false
 
 window.HISD_RECRUITING_CONFIG = {
-  useSampleData: false,
-  sheetId: "1bezoVPZmTNy9pP2MjQnP3oM0qTAlUtbq890T70HNzMU",
+  useSampleData: true,
+  sheetId: "PASTE_YOUR_GOOGLE_SHEET_ID_HERE",
   tabs: {
     athletes: "Athletes",
     updates: "Updates",
