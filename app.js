@@ -45,17 +45,27 @@ async function loadTab(tab, sample) {
   return csvToObjects(await res.text());
 }
 async function loadData() {
-  try {
-    const [athletes, updates, programs] = await Promise.all([
-      loadTab(CONFIG.tabs?.athletes || "Athletes", SAMPLE_ATHLETES),
-      loadTab(CONFIG.tabs?.updates || "Updates", SAMPLE_UPDATES),
-      loadTab(CONFIG.tabs?.programs || "Programs", SAMPLE_PROGRAMS)
-    ]);
-    return { athletes: athletes.filter(isActive), updates: updates.filter(isActive), programs: programs.filter(isActive) };
-  } catch (e) {
-    console.error(e); showDataWarning(e.message);
-    return { athletes: SAMPLE_ATHLETES, updates: SAMPLE_UPDATES, programs: SAMPLE_PROGRAMS };
-  }
+  const athletes = await loadTab(CONFIG.tabs?.athletes || "Athletes", SAMPLE_ATHLETES).catch(e => {
+    console.error(e);
+    showDataWarning("Athletes tab could not be loaded. Showing sample athlete data.");
+    return SAMPLE_ATHLETES;
+  });
+
+  const updates = await loadTab(CONFIG.tabs?.updates || "Updates", SAMPLE_UPDATES).catch(e => {
+    console.warn(e);
+    return SAMPLE_UPDATES;
+  });
+
+  const programs = await loadTab(CONFIG.tabs?.programs || "Programs", SAMPLE_PROGRAMS).catch(e => {
+    console.warn(e);
+    return SAMPLE_PROGRAMS;
+  });
+
+  return {
+    athletes: athletes.filter(isActive),
+    updates: updates.filter(isActive),
+    programs: programs.filter(isActive)
+  };
 }
 function showDataWarning(msg) {
   document.querySelectorAll("[data-status]").forEach(el => {
@@ -67,17 +77,11 @@ function driveDirectUrl(url) {
   if (!url) return "";
   const value = String(url).trim();
 
-  // If the sheet already has a normal web image URL, use it as-is.
   if (!value.includes("drive.google.com")) return value;
 
-  // Standard Drive share link:
-  // https://drive.google.com/file/d/FILE_ID/view?usp=sharing
   const fileMatch = value.match(/\/file\/d\/([^/]+)/);
   if (fileMatch) return `https://drive.google.com/thumbnail?id=${fileMatch[1]}&sz=w1200`;
 
-  // Direct-style Drive URL:
-  // https://drive.google.com/open?id=FILE_ID
-  // https://drive.google.com/uc?id=FILE_ID
   const idMatch = value.match(/[?&]id=([^&]+)/);
   if (idMatch) return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w1200`;
 
@@ -146,3 +150,5 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (document.body.dataset.page === "directory") renderDirectory(data);
   if (document.body.dataset.page === "profile") renderProfile(data);
 });
+
+console.log('HISD Recruiting live-data v4 loaded');
