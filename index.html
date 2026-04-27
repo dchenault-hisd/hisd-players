@@ -33,12 +33,15 @@
           <p data-status style="display:none; margin-top:16px; color:#fecaca; font-weight:700;"></p>
           <div class="hero-actions"><a class="btn btn-primary" href="athletes.html">View Athlete Directory</a><a class="btn btn-secondary" href="#recruiting">Recruiting Information</a></div>
         </section>
-        <aside class="updates-card">
+        <aside class="updates-card announcement-card">
           <div class="inner">
-            <h2 class="updates-title">Athletics Updates</h2>
-            <div class="rule" style="margin-top:14px; margin-bottom:8px; width:60px;"></div>
-            <div class="updates-list" data-updates></div>
-            <a class="btn btn-secondary" style="margin-top:18px; width:100%;" href="https://www.facebook.com/profile.php?id=61573619793756" target="_blank" rel="noopener">View Athletics Facebook Page</a>
+            <p class="announcement-label">Latest Announcement</p>
+            <div data-announcement-latest>
+              <h2 class="updates-title">Athletics Updates</h2>
+              <div class="rule" style="margin-top:14px; margin-bottom:8px; width:60px;"></div>
+              <div class="updates-list" data-updates></div>
+            </div>
+            <a class="btn btn-secondary" style="margin-top:18px; width:100%;" href="#announcements">View All Announcements</a>
           </div>
         </aside>
       </div>
@@ -48,6 +51,18 @@
   <main class="wrap">
     <section id="programs"><div class="section-head"><div><h2 class="section-title">Explore Our Programs</h2><p class="section-copy">This homepage section highlights major sports first and links each program to athlete profiles and recruiting information.</p></div><a class="section-link" href="athletes.html">View all athletes →</a></div><div class="program-grid" data-programs></div></section>
     <section id="directory" style="margin-top:42px;"><div class="section-head"><div><h2 class="section-title">Player Profiles</h2><p class="section-copy">A preview of current student-athlete cards. The full directory is generated from the Google Sheet.</p></div><a class="section-link" href="athletes.html">Open directory →</a></div><div class="profile-grid" data-featured-athletes></div></section>
+
+
+    <section id="announcements" style="margin-top:42px;">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Athletics Announcements</h2>
+          <p class="section-copy">Recent announcements from Henderson ISD Athletics. The newest item appears in the hero area, with the full list available here.</p>
+        </div>
+      </div>
+
+      <div class="announcement-list" data-announcements></div>
+    </section>
 
     <section id="facebook-feed" style="margin-top:42px;">
       <div class="section-head">

@@ -9,6 +9,11 @@ const SAMPLE_UPDATES = [
   { title:"Recruiting Updates", date:"Yesterday", text:"New film, measurables and profile updates continue to be added for current student-athletes.", active:"TRUE" },
   { title:"Program News", date:"This week", text:"College coaches can use this portal to review athlete information and connect with Henderson coaching staff.", active:"TRUE" }
 ];
+const SAMPLE_ANNOUNCEMENTS = [
+  { title:"Recruiting portal now live", date:"This week", text:"College coaches can review current Henderson ISD student-athlete information, highlight links and coach contacts in one place.", link:"", link_text:"", active:"TRUE" },
+  { title:"Spring updates in progress", date:"April 2026", text:"Coaches are updating profile information, measurables and film links for student-athletes across multiple sports.", link:"", link_text:"", active:"TRUE" },
+  { title:"Follow Henderson ISD Athletics", date:"Ongoing", text:"Recent posts, highlights and announcements are available through the official Henderson ISD Athletics Facebook page.", link:"https://www.facebook.com/profile.php?id=61573619793756", link_text:"Open Facebook", active:"TRUE" }
+];
 const SAMPLE_PROGRAMS = [
   { sport:"Football", tagline:"Tradition. Toughness. Together.", active:"TRUE" },
   { sport:"Boys Basketball", tagline:"Discipline. Effort. Relentless.", active:"TRUE" },
@@ -96,6 +101,11 @@ async function loadData() {
     return SAMPLE_UPDATES;
   });
 
+  const announcements = await loadTab(CONFIG.tabs?.announcements || "Announcements", SAMPLE_ANNOUNCEMENTS).catch(e => {
+    console.warn(e);
+    return SAMPLE_ANNOUNCEMENTS;
+  });
+
   const programs = await loadTab(CONFIG.tabs?.programs || "Programs", SAMPLE_PROGRAMS).catch(e => {
     console.warn(e);
     return SAMPLE_PROGRAMS;
@@ -104,6 +114,7 @@ async function loadData() {
   return {
     athletes: athletes.filter(isActive),
     updates: updates.filter(isActive),
+    announcements: announcements.filter(isActive),
     programs: programs.filter(isActive)
   };
 }
@@ -204,6 +215,26 @@ function updateItem(u) {
   </article>`;
 }
 
+function announcementHero(a) {
+  if (!a) return "";
+  const link = a.link ? `<a class="program-link" href="${esc(a.link)}" target="_blank" rel="noopener">${esc(a.link_text || "Read more")} →</a>` : "";
+  return `<h2 class="announcement-hero-title">${esc(a.title || "Announcement")}</h2>
+    <p class="announcement-hero-date">${esc(a.date || "")}</p>
+    <div class="rule" style="margin-top:14px; margin-bottom:8px; width:60px;"></div>
+    <p class="announcement-hero-text">${esc(a.text || "")}</p>
+    ${link}`;
+}
+
+function announcementItem(a) {
+  const link = a.link ? `<a class="section-link" style="display:inline-block;margin-top:14px;" href="${esc(a.link)}" target="_blank" rel="noopener">${esc(a.link_text || "Read more")} →</a>` : "";
+  return `<article class="announcement-item">
+    <h3>${esc(a.title || "Announcement")}</h3>
+    <div class="announcement-date">${esc(a.date || "")}</div>
+    <p>${esc(a.text || "")}</p>
+    ${link}
+  </article>`;
+}
+
 function programCard(p) {
   const sport = p.sport || p.title || "Program";
   return `<article class="program-card">
@@ -218,6 +249,12 @@ function programCard(p) {
 
 function renderHome(data) {
   document.querySelectorAll("[data-updates]").forEach(el => el.innerHTML = data.updates.slice(0,3).map(updateItem).join(""));
+
+  const latestAnnouncement = document.querySelector("[data-announcement-latest]");
+  if (latestAnnouncement) latestAnnouncement.innerHTML = announcementHero(data.announcements[0]);
+
+  const announcements = document.querySelector("[data-announcements]");
+  if (announcements) announcements.innerHTML = data.announcements.map(announcementItem).join("");
 
   const programs = document.querySelector("[data-programs]");
   if (programs) programs.innerHTML = data.programs.slice(0,4).map(programCard).join("");
@@ -307,10 +344,11 @@ function renderProfile(data) {
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await loadData();
   console.log("Loaded athlete count:", data.athletes.length, data.athletes);
+  console.log("Loaded announcement count:", data.announcements.length, data.announcements);
 
   if (document.body.dataset.page === "home") renderHome(data);
   if (document.body.dataset.page === "directory") renderDirectory(data);
   if (document.body.dataset.page === "profile") renderProfile(data);
 });
 
-console.log("HISD Recruiting live-data photo_link v6 loaded");
+console.log("HISD Recruiting live-data announcements v7 loaded");

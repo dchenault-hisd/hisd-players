@@ -1,0 +1,2 @@
+// Add this inside the tabs object in config.js:
+// announcements: "Announcements"
