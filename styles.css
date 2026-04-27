@@ -90,7 +90,7 @@ main { padding: 46px 0 60px; }
 .program-body p { margin: 12px 0 0; color: #d9e2f1; line-height: 1.6; }
 .program-link { display: inline-block; margin-top: 18px; color: var(--red-bright); font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: .92rem; }
 .profile-photo { height: 245px; background: linear-gradient(180deg, rgba(8,17,31,0.1), rgba(8,17,31,0.95)), radial-gradient(circle at top right, rgba(200,30,42,0.24), transparent 38%), linear-gradient(135deg, #123b7a, #07162d); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.8); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; overflow: hidden; }
-.profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+.profile-photo img { width: 100%; height: 100%; object-fit: cover; onject-position: 50% 20%; }
 .profile-body { padding: 22px; }
 .profile-topline { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
 .profile-body h3 { margin: 0; font-size: 1.65rem; line-height: 1; font-weight: 950; text-transform: uppercase; letter-spacing: -0.04em; }
