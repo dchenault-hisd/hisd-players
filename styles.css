@@ -242,3 +242,16 @@ main { padding: 46px 0 60px; }
   text-transform: uppercase;
   max-width: 780px;
 } .lead { font-size: 1.02rem; } .program-grid, .profile-grid, .pill-grid { grid-template-columns: 1fr; } .section-head { align-items: start; flex-direction: column; } .btn { width: 100%; } }
+
+.box .profile-stats .stat {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.box .profile-stats .stat strong {
+  color: #08111f;
+}
+
+.box .profile-stats .stat span {
+  color: #64748b;
+}
