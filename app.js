@@ -342,10 +342,10 @@ function renderProfile(data) {
     ${
       stats.length
         ? stats.map(s => {
-            const parts = s.split(":");
-            const label = parts[0] || "";
-            const value = parts.slice(1).join(":") || "";
-            return `
+           const parts = s.split(/:\s*/);
+           const label = parts[0] || "";
+           const value = parts.length > 1 ? parts.slice(1).join(":") : "";
+           return `
               <div class="stat">
                 <span>${esc(label)}</span>
                 <strong>${esc(value)}</strong>
