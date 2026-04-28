@@ -335,7 +335,32 @@ function renderProfile(data) {
     </article>
     <div>
       <div class="box"><h3>Profile Summary</h3><p>${esc(a.bio || "Recruiting profile information will be added soon.")}</p></div>
-      <div class="box" style="margin-top:18px;"><h3>Key Data Points</h3><p>${stats.length ? stats.map(esc).join("<br>") : "Stats will be added soon."}</p></div>
+     
+    // ** Old Stats Format <div class="box" style="margin-top:18px;"><h3>Key Data Points</h3><p>${stats.length ? stats.map(esc).join("<br>") : "Stats will be added soon."}</p></div>
+
+// New Stats Format
+<div class="box" style="margin-top:18px;">
+  <h3>Key Data Points</h3>
+  <div class="profile-stats">
+    ${
+      stats.length
+        ? stats.map(s => {
+            const parts = s.split(":");
+            const label = parts[0] || "";
+            const value = parts.slice(1).join(":") || "";
+            return `
+              <div class="stat">
+                <span>${esc(label)}</span>
+                <strong>${esc(value)}</strong>
+              </div>
+            `;
+          }).join("")
+        : `<p>Stats will be added soon.</p>`
+    }
+  </div>
+</div>
+// End of new Stats Format
+
       <div class="box" style="margin-top:18px;"><h3>Coach Contact</h3><p>${esc(a.coach_name || "Henderson ISD Athletics")}<br>${esc(a.coach_email || "athletics@hendersonisd.org")}</p><p>This section can include the athletic director, recruiting coordinator and counselor contact information.</p></div>
     </div>
   </section>`;
