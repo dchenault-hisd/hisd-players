@@ -214,13 +214,6 @@ function athleteCard(a) {
   </article>`;
 }
 
-function updateItem(u) {
-  return `<article class="update-item">
-    <p class="update-kicker">${esc(u.title || "Update")}</p>
-    <p class="update-text">${esc(u.text || "")}</p>
-    <p class="update-date">${esc(u.date || "")}</p>
-  </article>`;
-}
 
 function announcementHero(a) {
   if (!a) return "";
