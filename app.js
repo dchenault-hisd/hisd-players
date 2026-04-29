@@ -385,6 +385,76 @@ function renderProfile(data) {
   </section>`;
 }
 
+function renderProfilePDF(data) {
+  const target = document.getElementById("sheet");
+  if (!target) return;
+
+  const id = new URLSearchParams(location.search).get("id");
+  const a = data.athletes.find(x => athleteId(x) === id);
+
+  if (!a) {
+    target.innerHTML = "No athlete found.";
+    return;
+  }
+
+  const school = mapSchoolInfo(data.schoolinfo);
+  const stats = statsArray(a.key_stats);
+
+  target.innerHTML = `
+    <div class="header">
+      <div>
+        <div class="name">${esc(athleteName(a))}</div>
+        <div>${esc(a.sport)} • Class of ${esc(a.grad_year)}</div>
+      </div>
+      <div>
+        <strong>${esc(school.school_name || "")}</strong><br>
+        ${esc(school.location || "")}
+      </div>
+    </div>
+
+    <div class="section">
+      <strong>Measurables</strong><br>
+      Height: ${esc(a.height)}<br>
+      Weight: ${esc(a.weight)}<br>
+      GPA: ${esc(a.gpa)}<br>
+      Hometown: ${esc(a.hometown)}
+    </div>
+
+    <div class="section">
+      <strong>Key Stats</strong>
+      <div class="stats">
+        ${stats.map(s => {
+          const [label, value] = s.split(/:\s*/);
+          return `<div class="stat"><strong>${esc(label)}</strong><br>${esc(value)}</div>`;
+        }).join("")}
+      </div>
+    </div>
+
+    <div class="section">
+      <strong>Profile</strong><br>
+      ${esc(a.bio)}
+    </div>
+
+    <div class="section">
+      <strong>School Information</strong><br>
+      ${esc(school.classification)}<br>
+      Enrollment: ${esc(school.enrollment)}<br>
+      Academics: ${esc(school.academics)}<br>
+      Facilities: ${esc(school.facilities)}
+    </div>
+
+    <div class="section">
+      <strong>Contact</strong><br>
+      ${esc(a.coach_name)}<br>
+      ${esc(a.coach_email)}<br><br>
+      Athletic Director: ${esc(school.athletic_director)}<br>
+      ${esc(school.athletics_email)}<br>
+      ${esc(school.athletics_phone)}
+    </div>
+  `;
+}
+
+
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await loadData();
   console.log("Loaded athlete count:", data.athletes.length, data.athletes);
@@ -393,9 +463,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (document.body.dataset.page === "home") renderHome(data);
   if (document.body.dataset.page === "directory") renderDirectory(data);
   if (document.body.dataset.page === "profile") renderProfile(data);
- if (document.body.dataset.page === "profile-pdf") {
-  renderProfilePDF(data);
- }
+  if (document.body.dataset.page === "profile-pdf") renderProfilePDF(data);
 });
 
 console.log("HISD Recruiting live-data announcements v7 loaded");
