@@ -255,3 +255,12 @@ main { padding: 46px 0 60px; }
 .box .profile-stats .stat span {
   color: #64748b;
 }
+
+.profile-card .stat strong a {
+  color: white;
+  text-decoration: none;
+}
+
+.profile-card .stat strong a:hover {
+  text-decoration: underline;
+}
