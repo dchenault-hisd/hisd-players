@@ -384,19 +384,27 @@ function renderProfilePDF(data) {
   }
 
   const school = mapSchoolInfo(data.schoolinfo);
-  const stats = statsArray(a.key_stats);
+ const photo = getPhotoUrl(a);
 
-  target.innerHTML = `
-    <div class="header">
+target.innerHTML = `
+  <div class="header">
+    <div class="header-left">
+      <img src="assets/wicked-h.png" class="logo">
       <div>
-        <div class="name">${esc(athleteName(a))}</div>
-        <div>${esc(a.sport)} • Class of ${esc(a.grad_year)}</div>
-      </div>
-      <div>
-        <strong>${esc(school.school_name || "")}</strong><br>
-        ${esc(school.location || "")}
+        <div class="school-name">${esc(school.school_name || "")}</div>
+        <div>${esc(school.location || "")}</div>
       </div>
     </div>
+
+    <div class="header-right">
+      ${photo ? `<img src="${esc(photo)}" class="athlete-photo">` : ""}
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="name">${esc(athleteName(a))}</div>
+    <div>${esc(a.sport)} • Class of ${esc(a.grad_year)}</div>
+  </div>
 
     <div class="section">
       <strong>Measurables</strong><br>
