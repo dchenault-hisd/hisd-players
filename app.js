@@ -111,11 +111,17 @@ async function loadData() {
     return SAMPLE_PROGRAMS;
   });
 
+  const schoolinfo = await loadTab(CONFIG.tabs?.schoolinfo || "SchoolInfo", []).catch(e => {
+    console.warn(e);
+    return [];
+  });
+  
   return {
     athletes: athletes.filter(isActive),
     updates: updates.filter(isActive),
     announcements: announcements.filter(isActive),
     programs: programs.filter(isActive)
+    schoolinfo
   };
 }
 
@@ -268,6 +274,14 @@ function renderHome(data) {
 
   const featured = document.querySelector("[data-featured-athletes]");
   if (featured) featured.innerHTML = data.athletes.slice(0,3).map(athleteCard).join("");
+}
+
+function mapSchoolInfo(rows) {
+  const obj = {};
+  rows.forEach(r => {
+    if (r.key) obj[r.key] = r.value;
+  });
+  return obj;
 }
 
 function renderDirectory(data) {
