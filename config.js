@@ -11,6 +11,7 @@ window.HISD_RECRUITING_CONFIG = {
   tabs: {
     athletes: "Athletes",
     updates: "Updates",
-    programs: "Programs"
+    programs: "Programs",
+    schoolinfo: "SchoolInfo"
   }
 };
