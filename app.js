@@ -395,6 +395,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (document.body.dataset.page === "profile") renderProfile(data);
  if (document.body.dataset.page === "profile-pdf") {
   renderProfilePDF(data);
+ }
 });
 
 console.log("HISD Recruiting live-data announcements v7 loaded");
