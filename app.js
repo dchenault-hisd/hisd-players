@@ -96,11 +96,6 @@ async function loadData() {
     return SAMPLE_ATHLETES;
   });
 
-  const updates = await loadTab(CONFIG.tabs?.updates || "Updates", SAMPLE_UPDATES).catch(e => {
-    console.warn(e);
-    return SAMPLE_UPDATES;
-  });
-
   const announcements = await loadTab(CONFIG.tabs?.announcements || "Announcements", SAMPLE_ANNOUNCEMENTS).catch(e => {
     console.warn(e);
     return SAMPLE_ANNOUNCEMENTS;
@@ -118,7 +113,6 @@ async function loadData() {
   
   return {
     athletes: athletes.filter(isActive),
-    updates: updates.filter(isActive),
     announcements: announcements.filter(isActive),
     programs: programs.filter(isActive),
     schoolinfo
@@ -261,7 +255,6 @@ function programCard(p) {
 }
 
 function renderHome(data) {
-  document.querySelectorAll("[data-updates]").forEach(el => el.innerHTML = data.updates.slice(0,3).map(updateItem).join(""));
 
   const latestAnnouncement = document.querySelector("[data-announcement-latest]");
   if (latestAnnouncement) latestAnnouncement.innerHTML = announcementHero(data.announcements[0]);
