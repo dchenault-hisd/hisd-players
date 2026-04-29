@@ -10,7 +10,6 @@ window.HISD_RECRUITING_CONFIG = {
   sheetId: "1bezoVPZmTNy9pP2MjQnP3oM0qTAlUtbq890T70HNzMU",
   tabs: {
     athletes: "Athletes",
-    updates: "Updates",
     programs: "Programs",
     schoolinfo: "SchoolInfo"
   }
