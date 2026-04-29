@@ -384,27 +384,28 @@ function renderProfilePDF(data) {
   }
 
   const school = mapSchoolInfo(data.schoolinfo);
- const photo = getPhotoUrl(a);
+  const photo = getPhotoUrl(a);
+  const stats = statsArray(a.key_stats || a.stats);
 
-target.innerHTML = `
-  <div class="header">
-    <div class="header-left">
-      <img src="assets/wicked-h.png" class="logo">
-      <div>
-        <div class="school-name">${esc(school.school_name || "")}</div>
-        <div>${esc(school.location || "")}</div>
+  target.innerHTML = `
+    <div class="header">
+      <div class="header-left">
+        <img src="assets/wicked-h.png" class="logo">
+        <div>
+          <div class="school-name">${esc(school.school_name || "")}</div>
+          <div>${esc(school.location || "")}</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        ${photo ? `<img src="${esc(photo)}" class="athlete-photo">` : ""}
       </div>
     </div>
 
-    <div class="header-right">
-      ${photo ? `<img src="${esc(photo)}" class="athlete-photo">` : ""}
+    <div class="section">
+      <div class="name">${esc(athleteName(a))}</div>
+      <div>${esc(a.sport)} • ${esc(a.position || "Athlete")} • Class of ${esc(a.grad_year)}</div>
     </div>
-  </div>
-
-  <div class="section">
-    <div class="name">${esc(athleteName(a))}</div>
-    <div>${esc(a.sport)} • Class of ${esc(a.grad_year)}</div>
-  </div>
 
     <div class="section">
       <strong>Measurables</strong><br>
@@ -419,7 +420,7 @@ target.innerHTML = `
       <div class="stats">
         ${stats.map(s => {
           const [label, value] = s.split(/:\s*/);
-          return `<div class="stat"><strong>${esc(label)}</strong><br>${esc(value)}</div>`;
+          return `<div class="stat"><strong>${esc(label)}</strong><br>${esc(value || "")}</div>`;
         }).join("")}
       </div>
     </div>
