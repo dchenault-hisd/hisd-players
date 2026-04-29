@@ -351,8 +351,10 @@ function renderProfile(data) {
           <div class="stat"><span>Hometown</span><strong>${esc(a.hometown || "—")}</strong></div>
         </div>
         ${a.hudl_link ? `<a class="btn btn-primary" style="margin-top:18px; width:100%;" href="${esc(a.hudl_link)}" target="_blank" rel="noopener">Watch Highlights</a>` : ""}
-        ${a.one_sheet_url ? `<a class="btn btn-secondary" style="margin-top:12px; width:100%;" href="${esc(a.one_sheet_url)}" target="_blank" rel="noopener">Download One-Sheet</a>` : ""}
-      </div>
+     <a class="btn btn-secondary" style="margin-top:12px; width:100%;" href="profile-pdf.html?id=${encodeURIComponent(id)}" target="_blank">
+  Download Recruiting One-Sheet
+</a>
+</div>
     </article>
     <div>
       <div class="box"><h3>Profile Summary</h3><p>${esc(a.bio || "Recruiting profile information will be added soon.")}</p></div>
