@@ -388,19 +388,24 @@ function renderProfilePDF(data) {
   const stats = statsArray(a.key_stats || a.stats);
 
   target.innerHTML = `
-    <div class="header">
-      <div class="header-left">
+  <div class="header">
+    <div class="header-left">
+      <div class="name">${esc(athleteName(a))}</div>
+      <div>${esc(a.sport)} • ${esc(a.position || "Athlete")} • Class of ${esc(a.grad_year)}</div>
+    </div>
+
+    <div class="header-right">
+      <div class="school-block">
         <img src="assets/wicked-h.png" class="logo">
-        <div>
+        <div class="school-text">
           <div class="school-name">${esc(school.school_name || "")}</div>
           <div>${esc(school.location || "")}</div>
         </div>
       </div>
 
-      <div class="header-right">
-        ${photo ? `<img src="${esc(photo)}" class="athlete-photo">` : ""}
-      </div>
+      ${photo ? `<img src="${esc(photo)}" class="athlete-photo">` : ""}
     </div>
+  </div>
 
     <div class="section">
       <div class="name">${esc(athleteName(a))}</div>
