@@ -120,7 +120,7 @@ async function loadData() {
     athletes: athletes.filter(isActive),
     updates: updates.filter(isActive),
     announcements: announcements.filter(isActive),
-    programs: programs.filter(isActive)
+    programs: programs.filter(isActive),
     schoolinfo
   };
 }
