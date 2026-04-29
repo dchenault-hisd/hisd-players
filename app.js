@@ -199,7 +199,14 @@ function athleteCard(a) {
         <div class="stat"><span>Height</span><strong>${esc(a.height || "—")}</strong></div>
         <div class="stat"><span>Weight</span><strong>${esc(a.weight || "—")}</strong></div>
         <div class="stat"><span>GPA</span><strong>${esc(a.gpa || "—")}</strong></div>
-        <div class="stat"><span>Film</span><strong>${a.hudl_link ? "Hudl" : "—"}</strong></div>
+        <div class="stat">
+          <span>Film</span>
+          <strong>
+             ${a.hudl_link 
+                 ? `<a href="${esc(a.hudl_link)}" target="_blank" rel="noopener">Hudl</a>` 
+                 : "—"}
+          </strong>
+         </div>
       </div>
       <p class="profile-note">${esc(a.bio || "Recruiting profile information will be added soon.")}</p>
       <a class="program-link" href="athlete.html?id=${encodeURIComponent(id)}">Open Profile →</a>
