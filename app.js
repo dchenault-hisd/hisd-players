@@ -407,10 +407,6 @@ function renderProfilePDF(data) {
     </div>
   </div>
 
-    <div class="section">
-      <div class="name">${esc(athleteName(a))}</div>
-      <div>${esc(a.sport)} • ${esc(a.position || "Athlete")} • Class of ${esc(a.grad_year)}</div>
-    </div>
 
     <div class="section">
       <strong>Measurables</strong><br>
