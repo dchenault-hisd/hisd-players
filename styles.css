@@ -264,3 +264,7 @@ main { padding: 46px 0 60px; }
 .profile-card .stat strong a:hover {
   text-decoration: underline;
 }
+
+#programs {
+  display: none;
+}
